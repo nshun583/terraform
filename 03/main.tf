@@ -1,14 +1,3 @@
-terraform {
-  backend "s3" {
-    bucket = "terraform-up-and-running-state-snakano"
-    key = "global/s3/terraform.tfstate"
-    region = "us-east-2"
-
-    dynamodb_table = "terraform-up-and-running-locks-snakano"
-    encrypt = "true"    
-  }
-}
-
 provider "aws" {
   region = "us-east-2"
 }
@@ -17,7 +6,7 @@ resource "aws_s3_bucket" "terraform_state" {
   bucket = "terraform-up-and-running-state-snakano"
 
   lifecycle {
-    prevent_destroy = true
+    #prevent_destroy = true
   }
 }
 
