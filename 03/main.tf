@@ -1,11 +1,11 @@
 terraform {
   backend "s3" {
     bucket = "terraform-up-and-running-state-snakano"
-    key    = "global/s3/terraform.tfstate"
+    key = "global/s3/terraform.tfstate"
     region = "us-east-2"
 
-    dynamodb_table = "terraform-up-and-running-locks"
-    encrypt        = true
+    dynamodb_table = "terraform-up-and-running-locks-snakano"
+    encrypt = "true"    
   }
 }
 
@@ -36,7 +36,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "default" {
       sse_algorithm = "AES256"
     }
   }
-
 }
 
 resource "aws_s3_bucket_public_access_block" "public_access" {
@@ -48,7 +47,7 @@ resource "aws_s3_bucket_public_access_block" "public_access" {
 }
 
 resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "terraform-up-and-running-locks"
+  name         = "terraform-up-and-running-locks-snakano"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 
