@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "webserver-cluster" {
-  source = "github.com/nshun583/terraform-modules//modules/services/webserver-cluster?ref=v0.0.1"
+  source = "github.com/nshun583/terraform-modules//modules/services/webserver-cluster?ref=v0.0.12"
 
   cluster_name           = "webservers-prod"
   db_remote_state_bucket = "terraform-up-and-running-state-snakano"
@@ -12,6 +12,11 @@ module "webserver-cluster" {
   instance_type = "t2.micro"
   min_size      = 2
   max_size      = 10
+
+  custom_tags = {
+    Owner      = "team-snakano"
+    DeployedBy = "terraform"
+  }
 }
 
 resource "aws_autoscaling_schedule" "scale_out_during_business_hours" {
