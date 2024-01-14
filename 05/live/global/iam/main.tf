@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 module "users" {
-  source = "github.com/nshun583/terraform-modules//modules/landing-zones/iam-user?ref=v0.0.8"
+  source = "github.com/nshun583/terraform-modules//modules/landing-zones/iam-user"
 
   for_each  = toset(var.user_names)
   user_name = each.value
