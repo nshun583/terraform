@@ -14,13 +14,8 @@ provider "aws" {
 }
 
 module "users" {
-  source = "github.com/nshun583/terraform-modules//modules/landing-zones/iam-user?ref=v0.0.4"
+  source = "github.com/nshun583/terraform-modules//modules/landing-zones/iam-user"
 
-  count = length(var.user_names)
-  user_name  = var.user_names[count.index]
-}
-
-output "user_arns" {
-  value       = module.users[*].user_arn
-  description = "The ARNs of the created IAM users"
+  user_names = var.user_names
+  give_neo_cloudwatch_full_access = false
 }
