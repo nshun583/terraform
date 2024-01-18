@@ -12,18 +12,3 @@ output "primary_arn" {
     value = module.mysql_primary.arn
     description = "The ARN of the primary database"
 }
-
-# output "replicat_address" {
-#     value = module.mysql_replica.address
-#     description = "Connect to the replica database at this endpoint"   
-# }
-
-# output "primary_port" {
-#     value = module.mysql_replica.port
-#     description = "The port the replica database is listening on"
-# }
-
-# output "primary_arn" {
-#     value = module.mysql_replica.arn
-#     description = "The ARN of the replica database"
-# }
